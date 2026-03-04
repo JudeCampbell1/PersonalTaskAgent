@@ -1,5 +1,6 @@
 # PersonalTaskAgent
-<img width="1769" height="363" alt="image" src="https://github.com/user-attachments/assets/4adf6554-d57f-4709-9fdd-51dd00e6114b" />
+<img width="1769" height="363" alt="image" src="https://github.com/user-attachments/assets/360d9fdd-899e-429a-a8eb-338aac72cf5d" />
+
 
 
 > PersonalTaskAgentAI — Lightweight, offline-first personal assistant that runs entirely on your device. Handles email sorting, calendar events, web lookups, reminders, script execution and basic automation through chat interfaces (WhatsApp, Telegram, Discord, Slack).
