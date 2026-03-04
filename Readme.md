@@ -124,9 +124,11 @@ npm run build
 
 ### v1.5.14
 - Initial stable release
-- Async state container with full TypeScript support
-- Zero-dependency architecture
-- Comprehensive test suite
+- Core async task handling with TypeScript
+- Zero external dependencies
+- Full unit & integration test suite
+- Basic voice input/output support
+- Custom rules & scheduled automation
 
 ## Contributing
 
@@ -140,4 +142,4 @@ Contributions are welcome! Please read the [contributing guidelines](CONTRIBUTIN
 
 ## License
 
-MIT © Copyright (c) 2026 PersonalTaskAgent, Inc.
+MIT © Copyright (c) 2026 PersonalTaskAgentAI, Inc.
