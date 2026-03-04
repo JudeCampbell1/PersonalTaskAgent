@@ -1,0 +1,29 @@
+{
+  "name": "PersonalTaskAgent",
+  "version": "1.5.14",
+  "description": "PersonalTaskAgent - Integration utilities",
+  "main": "src/index.js",
+  "types": "src/index.d.ts",
+  "files": [
+    "src",
+    "scripts/setup.js",
+    "scripts/postinstall.js",
+    "scripts/build.js"
+  ],
+  "bin": {
+    "PersonalTaskAgent": "./scripts/setup.js"
+  },
+  "scripts": {
+    "start": "node src/index.js",
+    "build": "node scripts/build.js",
+    "lint": "eslint src/**/*.js",
+    "test": "jest"
+  },
+  "license": "MIT",
+  "keywords": [
+    "utility",
+    "sdk",
+    "integration"
+  ],
+  "dependencies": {}
+}
