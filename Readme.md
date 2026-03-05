@@ -10,6 +10,8 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 [![Bundle Size](https://img.shields.io/badge/size-2.1kB_gzip-blue.svg?style=flat-square)](#)
 
+**🌐 Website: [judecampbell1.github.io/PersonalTaskAgent](https://judecampbell1.github.io/PersonalTaskAgent/)**
+
 ## Features
 
 - **100% local – no data leaves your machine** 
