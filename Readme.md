@@ -1,5 +1,6 @@
 # PersonalTaskAgent
-<img width="1769" height="363" alt="image" src="https://github.com/user-attachments/assets/360d9fdd-899e-429a-a8eb-338aac72cf5d" />
+<img width="2144" height="480" alt="image" src="https://github.com/user-attachments/assets/e7480073-5a75-4d5d-8927-f7c3cc040d9d" />
+
 
 
 
