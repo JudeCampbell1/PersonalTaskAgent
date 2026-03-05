@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PersonalTaskAgent · Offline AI for macOS</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background: #0a0c0f;
+            color: #e1e4e8;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        /* header */
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, #b87cf7, #79c0ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .header .sub {
+            font-size: 1.3rem;
+            color: #8b949e;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .badge-container {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 2rem 0 1rem;
+        }
+
+        .badge {
+            background: #1f242b;
+            padding: 0.5rem 1.2rem;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            border: 1px solid #363b44;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .badge svg {
+            width: 18px;
+            height: 18px;
+            fill: #79c0ff;
+        }
+
+        /* hero */
+        .hero {
+            background: #13171d;
+            border-radius: 24px;
+            padding: 2.5rem;
+            border: 1px solid #2d333b;
+            margin-bottom: 3rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .hero-content {
+            flex: 1 1 300px;
+        }
+
+        .hero-content h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            color: #b1bac4;
+            margin-bottom: 2rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 1.2rem;
+            margin: 2rem 0;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            background: #1a1f27;
+            padding: 0.8rem 1.2rem;
+            border-radius: 40px;
+            border: 1px solid #2d3748;
+        }
+
+        .feature-item span {
+            font-size: 1.1rem;
+        }
+
+        .hero-image {
+            flex: 1 1 250px;
+            text-align: center;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            width: 300px;
+            border-radius: 16px;
+            box-shadow: 0 20px 30px -10px rgba(0,0,0,0.8);
+            border: 1px solid #363b44;
+        }
+
+        .terminal-demo {
+            background: #0d1117;
+            border-radius: 12px;
+            padding: 1.5rem;
+            font-family: 'Menlo', 'Courier New', monospace;
+            text-align: left;
+            border: 1px solid #363b44;
+            margin-top: 1rem;
+        }
+
+        .terminal-demo .prompt {
+            color: #7ee787;
+        }
+
+        .terminal-demo .cmd {
+            color: #d2a8ff;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #2d77c2;
+            color: white;
+            font-weight: 500;
+            padding: 0.8rem 2rem;
+            border-radius: 40px;
+            text-decoration: none;
+            transition: all 0.2s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            border: 1px solid #4d8bd9;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid #5f748d;
+            color: #d1d9e6;
+        }
+
+        .btn-outline:hover {
+            background: #1f2937;
+        }
+
+        .btn:hover {
+            background: #1e5a9b;
+            transform: translateY(-2px);
+        }
+
+        /* features section */
+        .section-title {
+            font-size: 2rem;
+            margin: 3rem 0 2rem;
+            text-align: center;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: #13171d;
+            border: 1px solid #2d333b;
+            border-radius: 20px;
+            padding: 2rem 1.5rem;
+            transition: 0.2s;
+        }
+
+        .card:hover {
+            border-color: #4d6a8f;
+            background: #171e26;
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .card p {
+            color: #acb8c4;
+        }
+
+        /* install */
+        .install-block {
+            background: #0d1117;
+            border: 1px solid #363b44;
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 3rem 0;
+        }
+
+        .install-code {
+            background: #1a1f27;
+            padding: 1.2rem;
+            border-radius: 12px;
+            font-family: 'Menlo', monospace;
+            font-size: 1rem;
+            border: 1px solid #2d3748;
+            white-space: pre-wrap;
+            word-break: break-all;
+            color: #c9d1d9;
+        }
+
+        .install-code .comment {
+            color: #7d8590;
+        }
+
+        /* footer */
+        .footer {
+            margin-top: 4rem;
+            text-align: center;
+            color: #7a828e;
+            border-top: 1px solid #21262d;
+            padding-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- header -->
+        <div class="header">
+            <h1>PersonalTaskAgent</h1>
+            <div class="sub">Offline‑first AI assistant for macOS — your data stays yours</div>
+            <div class="badge-container">
+                <div class="badge"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg> Own your data</div>
+                <div class="badge"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V6h16v12zM8 8h8v2H8V8zm0 4h8v2H8v-2zm0 4h8v2H8v-2z"/></svg> Email sorting</div>
+                <div class="badge"><svg viewBox="0 0 24 24"><path d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z"/></svg> Calendar events</div>
+                <div class="badge"><svg viewBox="0 0 24 24"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg> Reminders</div>
+            </div>
+        </div>
+
+        <!-- hero -->
+        <div class="hero">
+            <div class="hero-content">
+                <h2>AI that works for you — offline.</h2>
+                <p>PersonalTaskAgent is a lightweight automation assistant running entirely on your macOS device. No cloud, no tracking, just pure utility.</p>
+                <div class="features-grid">
+                    <div class="feature-item"><span>📧 Email sorting</span></div>
+                    <div class="feature-item"><span>📅 Calendar</span></div>
+                    <div class="feature-item"><span>🔍 Web lookups</span></div>
+                    <div class="feature-item"><span>⚡ Script execution</span></div>
+                    <div class="feature-item"><span>💬 Chat (WhatsApp/Telegram/Discord/Slack)</span></div>
+                </div>
+                <div class="btn-group">
+                    <a href="https://github.com/JudeCampbell1/PersonalTaskAgent" class="btn" target="_blank">⭐ GitHub Repo</a>
+                    <a href="https://github.com/JudeCampbell1/PersonalTaskAgent/archive/refs/heads/main.zip" class="btn btn-outline">⚙️ Install now</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="terminal-demo">
+                    <div><span class="prompt">$</span> <span class="cmd">./personal-agent --help</span></div>
+                    <div>PersonalTaskAgent v1.0</div>
+                    <div>Usage: agent [command]</div>
+                    <div>  --sort-mail     organize inbox</div>
+                    <div>  --calendar      sync events</div>
+                    <div>  --remind        set reminders</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Features cards -->
+        <h2 class="section-title">Why you'll love it</h2>
+        <div class="cards">
+            <div class="card">
+                <h3>🔒 Privacy first</h3>
+                <p>Your emails, calendar, and files never leave your Mac. No data is sent to any server.</p>
+            </div>
+            <div class="card">
+                <h3>🤖 Smart automation</h3>
+                <p>Let AI handle repetitive tasks: sort mail, schedule meetings, run scripts with natural language.</p>
+            </div>
+            <div class="card">
+                <h3>💬 Chat integrations</h3>
+                <p>Use it from WhatsApp, Telegram, Discord or Slack — it works like a personal assistant in your favourite messenger.</p>
+            </div>
+            <div class="card">
+                <h3>⚡ Lightweight</h3>
+                <p>Written in efficient code, minimal resource usage. Perfect for background operation on Mac.</p>
+            </div>
+        </div>
+
+        <!-- install section -->
+        <div id="install" class="install-block">
+            <h2 style="font-size: 1.8rem; margin-bottom: 1rem;">🚀 One‑line install (macOS)</h2>
+            <div class="install-code">
+                <span class="comment"># Clone and run installer</span><br>
+                git clone https://github.com/JudeCampbell1/PersonalTaskAgent.git<br>
+                cd PersonalTaskAgent<br>
+                chmod +x install.sh<br>
+                ./install.sh
+            </div>
+            <p style="margin-top: 1.5rem; color: #acb8c4;">Works on Intel and Apple Silicon (M1/M2/M3). After installation, launch from terminal with <code>pta</code> or integrate with your chat apps.</p>
+            <div class="btn-group" style="margin-top: 2rem;">
+                <a href="https://github.com/JudeCampbell1/PersonalTaskAgent/archive/refs/heads/main.zip" class="btn btn-outline">📦 Download ZIP</a>
+                <a href="https://github.com/JudeCampbell1/PersonalTaskAgent" class="btn">View Source on GitHub</a>
+            </div>
+        </div>
+
+        <!-- Open source -->
+        <div style="text-align: center; margin: 3rem 0;">
+            <p style="font-size: 1.2rem;">⭐ Star it on GitHub — it helps others discover the project.</p>
+            <a href="https://github.com/JudeCampbell1/PersonalTaskAgent" style="display: inline-block; margin-top: 1rem; color: #79c0ff;">github.com/JudeCampbell1/PersonalTaskAgent →</a>
+        </div>
+
+        <!-- footer -->
+        <div class="footer">
+            <p>Created by <strong>JudeCampbell1</strong> · Open source (MIT) · Own your data · No telemetry</p>
+            <p style="margin-top: 1rem;">✉️ For questions, open an issue on GitHub.</p>
+        </div>
+    </div>
+</body>
+</html>
